@@ -65,12 +65,13 @@ class Manager extends Employee{
   constructor(first_name, last_name, email, age){
     super(first_name, last_name, email, age)
     this.reports = [];
+    // this.firedReport = [];
   }
   hire(employee){
     this.reports.push(employee);
   }
   fire(index){
-    this.reports.remove([index]);
+    this.reports.splice(index, 1);
   }
 }
 
@@ -97,16 +98,55 @@ class Manager extends Employee{
 
 //Code Here
 class ProgressiveManager extends Manager{
-  constructor(first_name, last_name, email, age){
+  constructor(first_name, last_name, email, age, reports){
     super(first_name, last_name, email, age, reports)
     this.title = 'Not a manager';
     this.bonus = 0;
-    // Manager lvl
-    if(reports.length >0){
+  }
+  hire(employee){
+    this.reports.push(employee);
+    if(this.reports.length === 0){
+      this.title = 'Not a manager'
+    }
+    else if(this.reports.length >= 1 && this.reports.length <= 3){
       this.title = 'Barely Manager'
     }
-    // bonus amount
-
+    else if(this.reports.length >=4 && this.reports.length <= 10){
+      this.title = 'Mostly Manager'
+    }
+    else if(this.reports.length >=11 && this.reports.length <= 50){
+      this.title = 'Manager'
+    }
+    else if(this.reports.length >=51 && this.reports.length <= 100){
+      this.title = 'Manager Plus'
+    }
+    else if(this.reports.length >=101){
+      this.title = 'Bestest Manager'
+    }
+  }
+  fire(index){
+    if(this.reports.length === 0){
+      this.title = 'Not a manager'
+    }
+    else if(this.reports.length >= 1 && this.reports.length <= 3){
+      this.title = 'Barely Manager'
+    }
+    else if(this.reports.length >=4 && this.reports.length <= 10){
+      this.title = 'Mostly Manager'
+    }
+    else if(this.reports.length >=11 && this.reports.length <= 50){
+      this.title = 'Manager'
+    }
+    else if(this.reports.length >=51 && this.reports.length <= 100){
+      this.title = 'Manager Plus'
+    }
+    else if(this.reports.length >=101){
+      this.title = 'Bestest Manager'
+    }
+    let firedReport = []
+    firedReport.push(this.reports.splice(index, 1));
+    // firedReport.push(fired);
+    this.bonus = firedReport.length * 100
   }
 }
 
