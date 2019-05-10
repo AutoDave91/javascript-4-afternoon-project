@@ -143,10 +143,8 @@ class ProgressiveManager extends Manager{
     else if(this.reports.length >=101){
       this.title = 'Bestest Manager'
     }
-    let firedReport = []
-    firedReport.push(this.reports.splice(index, 1));
-    // firedReport.push(fired);
-    this.bonus = firedReport.length * 100
+    // this.firedReport.push(this.reports.splice(index, 1));
+    this.bonus += 100;
   }
 }
 
