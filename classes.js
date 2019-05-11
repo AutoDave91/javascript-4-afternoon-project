@@ -143,7 +143,6 @@ class ProgressiveManager extends Manager{
     else if(this.reports.length >=101){
       this.title = 'Bestest Manager'
     }
-    // this.firedReport.push(this.reports.splice(index, 1));
     this.bonus += 100;
   }
 }
@@ -177,22 +176,18 @@ class Machine{
   constructor(){
     this.widgets_made_count = 0;
     this.wear_and_tear_count = 0;
-    this.needs_reboot = 0;
+    this.needs_reboot = false;
   }
   makeWidgets(num){
-    if(num % 2 ===0){
-      wear_and_tear_count += 1;
-    }
-    return num + 1
+    this.widgets_made_count += num;
+    this.wear_and_tear_count += num;
   }
   fixMachine(){
-    needs_reboot = true;
+    this.needs_reboot = true;
   }
   reboot(){
-    return function(){
-      wear_and_tear_count -= 10;
-      needs_reboot = false;
-    }
+    this.wear_and_tear_count -= 10;
+    this.needs_reboot = false;
   }
 }
 
